@@ -9,7 +9,7 @@ async function StoreLayout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <main className="pt-[50px]">{children}</main>
+      <main className="pt-[50px] [overflow-anchor:auto]">{children}</main>
       <CartSheet />
       <MainFooter />
     </>

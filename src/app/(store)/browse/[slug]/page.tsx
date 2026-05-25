@@ -43,7 +43,7 @@ const ProductDetailPageQuery = gql(/* GraphQL */ `
           tags
           totalComments
           ...ProductImageShowcaseFragment
-          commentsCollection(first: 50) {
+          commentsCollection(first: 20) {
             edges {
               node {
                 ...ProductCommentsSectionFragment
@@ -58,7 +58,7 @@ const ProductDetailPageQuery = gql(/* GraphQL */ `
         }
       }
     }
-    recommendations: productsCollection(first: 4) {
+    recommendations: productsCollection(first: 20) {
       edges {
         node {
           id

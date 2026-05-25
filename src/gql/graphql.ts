@@ -2696,13 +2696,6 @@ export type LandingRouteQueryQuery = {
       node: { __typename?: "wishlist"; product_id: string };
     }>;
   } | null;
-  cartsCollection?: {
-    __typename?: "cartsConnection";
-    edges: Array<{
-      __typename?: "cartsEdge";
-      node: { __typename?: "carts"; product_id: string; quantity: number };
-    }>;
-  } | null;
   collectionScrollCards?: {
     __typename?: "collectionsConnection";
     edges: Array<{
@@ -4557,7 +4550,7 @@ export const ProductDetailPageQueryDocument = {
                                 {
                                   kind: "Argument",
                                   name: { kind: "Name", value: "first" },
-                                  value: { kind: "IntValue", value: "5" },
+                                  value: { kind: "IntValue", value: "20" },
                                 },
                               ],
                               selectionSet: {
@@ -4630,7 +4623,7 @@ export const ProductDetailPageQueryDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "first" },
-                value: { kind: "IntValue", value: "4" },
+                value: { kind: "IntValue", value: "20" },
               },
             ],
             selectionSet: {
@@ -5481,7 +5474,7 @@ export const LandingRouteQueryDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "first" },
-                value: { kind: "IntValue", value: "4" },
+                value: { kind: "IntValue", value: "50" },
               },
               {
                 kind: "Argument",
@@ -5599,76 +5592,13 @@ export const LandingRouteQueryDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cartsCollection" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "filter" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "user_id" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "user_id" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "edges" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "node" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "product_id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "quantity" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             alias: { kind: "Name", value: "collectionScrollCards" },
             name: { kind: "Name", value: "collectionsCollection" },
             arguments: [
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "first" },
-                value: { kind: "IntValue", value: "6" },
+                value: { kind: "IntValue", value: "50" },
               },
               {
                 kind: "Argument",

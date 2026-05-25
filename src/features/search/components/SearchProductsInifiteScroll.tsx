@@ -1,7 +1,7 @@
 "use client";
 import { OrderByDirection, SearchQueryVariables } from "@/gql/graphql";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SearchResultPage from "./SearchResultPage";
 
 interface SearchProductsInifiteScrollProps {
@@ -23,11 +23,11 @@ function SearchProductsInifiteScroll({
   }, [searchParmas]);
 
   const loadMoreHandler = (after: string) => {
-    setPageVariables([...pageVariables, { ...varaibles, after, first: 8 }]);
+    setPageVariables([...pageVariables, { ...varaibles, after, first: 4 }]);
   };
 
   return (
-    <section>
+    <section style={{ overflowAnchor: "none"}}>
       {pageVariables.map((variable, i) => (
         <SearchResultPage
           key={"" + variable.after}
@@ -80,6 +80,7 @@ const searchParamsVariablesFactory = (
   }
 
   console.log("collections", collections);
+
   const varaibles: SearchQueryVariables = {
     search: search ? `%${search.trim()}%` : "%%",
     lower: range && range[0] ? `${range[0]}` : undefined,
@@ -90,7 +91,7 @@ const searchParamsVariablesFactory = (
         ? collections
         : undefined,
     orderBy,
-    first: 4,
+    first: 28,
     after: undefined,
   };
   return varaibles;

@@ -6,7 +6,7 @@ import { useQuery } from "@urql/next";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/features/products";
 import SearchProductsGridSkeleton from "./SearchProductsGridSkeleton";
-
+import { useEffect, useRef } from "react";
 const ProductSearch = gql(/* GraphQL */ `
   query Search(
     $search: String
@@ -68,14 +68,68 @@ const SearchResultPage = ({
 
   const products = data?.productsCollection;
 
+
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!isLastPage || !products?.pageInfo.hasNextPage || fetching) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const firstEntry = entries[0];
+        if (firstEntry.isIntersecting) {
+          onLoadMore(products.pageInfo.endCursor)
+        }
+      },
+      { rootMargin: "0px 0px 2000px 0px", threshold: 0.1 }
+    );
+  
+  if (sentinelRef.current) {
+    observer.observe(sentinelRef.current);
+  }
+
+  return () => observer.disconnect();
+
+  }, [isLastPage, products?.pageInfo.hasNextPage, products?.pageInfo.endCursor, fetching, onLoadMore]);
+
+
   return (
     <div>
+
       {error && <p>Oh no... {error.message}</p>}
 
-      {fetching && <SearchProductsGridSkeleton />}
 
       {products && (
-        <>
+        <section 
+          className="grid grid-cols-2 lg:grid-cols-4 w-3/4 gap-y-8 gap-x-3 py-5"
+          style={{ overflowAnchor: "auto"}}
+        >
+
+          {products.edges.map(({ node }) => (
+            <ProductCard key={node.id} product={node} />
+          ))}
+        </section>
+      )}
+
+{/*      {fetching && (
+        <div className="w-full py-5 flex justify-center">
+          <p className="text-sm text-muted-foreground">\.../</p>
+        </div>
+      )}*/}
+
+
+      {isLastPage && products.pageInfo.hasNextPage && (
+        <div 
+          className="w-full h-10"
+          ref={sentinelRef}
+        >
+          {/*<Button onClick={() => onLoadMore(products.pageInfo.endCursor)}>
+            load more
+          </Button>*/}
+        </div>
+      )}
+
+{/*            <>
           {products.edges.length === 0 && (
             <p>
               {`There is no Products with name `}
@@ -85,23 +139,13 @@ const SearchResultPage = ({
               {"."}
             </p>
           )}
-          <section className="grid grid-cols-2 lg:grid-cols-4 w-full gap-y-8 gap-x-3 py-5">
-            {products.edges.map(({ node }) => (
-              <ProductCard key={node.id} product={node} />
-            ))}
-          </section>
+*/}
 
-          {isLastPage && products.pageInfo.hasNextPage && (
-            <div className="w-full flex justify-center items-center mt-3">
-              <Button onClick={() => onLoadMore(products.pageInfo.endCursor)}>
-                load more
-              </Button>
-            </div>
-          )}
-        </>
-      )}
     </div>
   );
 };
 
 export default SearchResultPage;
+
+
+
