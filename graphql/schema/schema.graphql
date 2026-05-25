@@ -15,6 +15,17 @@ input BigFloatFilter {
   neq: BigFloat
 }
 
+"""
+Boolean expression comparing fields on type "BigFloatList"
+"""
+input BigFloatListFilter {
+  containedBy: [BigFloat!]
+  contains: [BigFloat!]
+  eq: [BigFloat!]
+  is: FilterIs
+  overlaps: [BigFloat!]
+}
+
 """An arbitrary size integer represented as a string"""
 scalar BigInt
 
@@ -33,6 +44,17 @@ input BigIntFilter {
 }
 
 """
+Boolean expression comparing fields on type "BigIntList"
+"""
+input BigIntListFilter {
+  containedBy: [BigInt!]
+  contains: [BigInt!]
+  eq: [BigInt!]
+  is: FilterIs
+  overlaps: [BigInt!]
+}
+
+"""
 Boolean expression comparing fields on type "Boolean"
 """
 input BooleanFilter {
@@ -41,11 +63,22 @@ input BooleanFilter {
 }
 
 """
+Boolean expression comparing fields on type "BooleanList"
+"""
+input BooleanListFilter {
+  containedBy: [Boolean!]
+  contains: [Boolean!]
+  eq: [Boolean!]
+  is: FilterIs
+  overlaps: [Boolean!]
+}
+
+"""
 An opaque string using for tracking a position in results during pagination
 """
 scalar Cursor
 
-"""A date wihout time information"""
+"""A date without time information"""
 scalar Date
 
 """
@@ -60,6 +93,17 @@ input DateFilter {
   lt: Date
   lte: Date
   neq: Date
+}
+
+"""
+Boolean expression comparing fields on type "DateList"
+"""
+input DateListFilter {
+  containedBy: [Date!]
+  contains: [Date!]
+  eq: [Date!]
+  is: FilterIs
+  overlaps: [Date!]
 }
 
 """A date and time"""
@@ -79,6 +123,17 @@ input DatetimeFilter {
   neq: Datetime
 }
 
+"""
+Boolean expression comparing fields on type "DatetimeList"
+"""
+input DatetimeListFilter {
+  containedBy: [Datetime!]
+  contains: [Datetime!]
+  eq: [Datetime!]
+  is: FilterIs
+  overlaps: [Datetime!]
+}
+
 enum FilterIs {
   NULL
   NOT_NULL
@@ -96,6 +151,17 @@ input FloatFilter {
   lt: Float
   lte: Float
   neq: Float
+}
+
+"""
+Boolean expression comparing fields on type "FloatList"
+"""
+input FloatListFilter {
+  containedBy: [Float!]
+  contains: [Float!]
+  eq: [Float!]
+  is: FilterIs
+  overlaps: [Float!]
 }
 
 """
@@ -119,13 +185,22 @@ input IntFilter {
   neq: Int
 }
 
+"""
+Boolean expression comparing fields on type "IntList"
+"""
+input IntListFilter {
+  containedBy: [Int!]
+  contains: [Int!]
+  eq: [Int!]
+  is: FilterIs
+  overlaps: [Int!]
+}
+
 """A Javascript Object Notation value serialized as a string"""
 scalar JSON
 
 """The root type for creating and mutating data"""
 type Mutation {
-  custom_access_token_hook(event: JSON): JSON
-
   """Deletes zero or more records from the `address` collection"""
   deleteFromaddressCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -236,6 +311,39 @@ type Mutation {
     atMost: Int! = 1
   ): profilesDeleteResponse!
 
+  """Deletes zero or more records from the `review_images` collection"""
+  deleteFromreview_imagesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: review_imagesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): review_imagesDeleteResponse!
+
+  """Deletes zero or more records from the `review_likes` collection"""
+  deleteFromreview_likesCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: review_likesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): review_likesDeleteResponse!
+
+  """Deletes zero or more records from the `reviews` collection"""
+  deleteFromreviewsCollection(
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: reviewsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): reviewsDeleteResponse!
+
   """Deletes zero or more records from the `wishlist` collection"""
   deleteFromwishlistCollection(
     """Restricts the mutation's impact to records matching the criteria"""
@@ -276,6 +384,15 @@ type Mutation {
 
   """Adds one or more `profiles` records to the collection"""
   insertIntoprofilesCollection(objects: [profilesInsertInput!]!): profilesInsertResponse
+
+  """Adds one or more `review_images` records to the collection"""
+  insertIntoreview_imagesCollection(objects: [review_imagesInsertInput!]!): review_imagesInsertResponse
+
+  """Adds one or more `review_likes` records to the collection"""
+  insertIntoreview_likesCollection(objects: [review_likesInsertInput!]!): review_likesInsertResponse
+
+  """Adds one or more `reviews` records to the collection"""
+  insertIntoreviewsCollection(objects: [reviewsInsertInput!]!): reviewsInsertResponse
 
   """Adds one or more `wishlist` records to the collection"""
   insertIntowishlistCollection(objects: [wishlistInsertInput!]!): wishlistInsertResponse
@@ -440,6 +557,54 @@ type Mutation {
     atMost: Int! = 1
   ): profilesUpdateResponse!
 
+  """Updates zero or more records in the `review_images` collection"""
+  updatereview_imagesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: review_imagesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: review_imagesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): review_imagesUpdateResponse!
+
+  """Updates zero or more records in the `review_likes` collection"""
+  updatereview_likesCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: review_likesUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: review_likesFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): review_likesUpdateResponse!
+
+  """Updates zero or more records in the `reviews` collection"""
+  updatereviewsCollection(
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: reviewsUpdateInput!
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: reviewsFilter
+
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+  ): reviewsUpdateResponse!
+
   """Updates zero or more records in the `wishlist` collection"""
   updatewishlistCollection(
     """
@@ -511,6 +676,11 @@ type Query {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: addressFilter
 
@@ -531,6 +701,11 @@ type Query {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: cartsFilter
@@ -553,6 +728,11 @@ type Query {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: collectionsFilter
 
@@ -574,6 +754,11 @@ type Query {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: commentsFilter
 
@@ -594,6 +779,11 @@ type Query {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: mediasFilter
@@ -622,6 +812,11 @@ type Query {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: order_linesFilter
 
@@ -642,6 +837,11 @@ type Query {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: ordersFilter
@@ -664,6 +864,11 @@ type Query {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: product_mediasFilter
 
@@ -684,6 +889,11 @@ type Query {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: productsFilter
@@ -706,12 +916,95 @@ type Query {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: profilesFilter
 
     """Sort order to apply to the collection"""
     orderBy: [profilesOrderBy!]
   ): profilesConnection
+
+  """A pagable collection of type `review_images`"""
+  review_imagesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: review_imagesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [review_imagesOrderBy!]
+  ): review_imagesConnection
+
+  """A pagable collection of type `review_likes`"""
+  review_likesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: review_likesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [review_likesOrderBy!]
+  ): review_likesConnection
+
+  """A pagable collection of type `reviews`"""
+  reviewsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: reviewsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [reviewsOrderBy!]
+  ): reviewsConnection
 
   """A pagable collection of type `wishlist`"""
   wishlistCollection(
@@ -726,6 +1019,11 @@ type Query {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: wishlistFilter
@@ -754,6 +1052,17 @@ input StringFilter {
   startsWith: String
 }
 
+"""
+Boolean expression comparing fields on type "StringList"
+"""
+input StringListFilter {
+  containedBy: [String!]
+  contains: [String!]
+  eq: [String!]
+  is: FilterIs
+  overlaps: [String!]
+}
+
 """A time without date information"""
 scalar Time
 
@@ -771,6 +1080,17 @@ input TimeFilter {
   neq: Time
 }
 
+"""
+Boolean expression comparing fields on type "TimeList"
+"""
+input TimeListFilter {
+  containedBy: [Time!]
+  contains: [Time!]
+  eq: [Time!]
+  is: FilterIs
+  overlaps: [Time!]
+}
+
 """A universally unique identifier"""
 scalar UUID
 
@@ -782,6 +1102,17 @@ input UUIDFilter {
   in: [UUID!]
   is: FilterIs
   neq: UUID
+}
+
+"""
+Boolean expression comparing fields on type "UUIDList"
+"""
+input UUIDListFilter {
+  containedBy: [UUID!]
+  contains: [UUID!]
+  eq: [UUID!]
+  is: FilterIs
+  overlaps: [UUID!]
 }
 
 type address implements Node {
@@ -897,7 +1228,7 @@ type carts implements Node {
   product_id: String!
   user_id: UUID!
   created_at: Datetime!
-  products: products!
+  products: products
 }
 
 type cartsConnection {
@@ -982,11 +1313,11 @@ type collections implements Node {
   id: String!
   label: String!
   slug: String!
+  title: String!
+  description: String!
   order: Int
   featured_image_id: String!
-  description: String!
-  title: String!
-  medias: medias!
+  medias: medias
   productsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -999,6 +1330,11 @@ type collections implements Node {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: productsFilter
@@ -1030,10 +1366,10 @@ input collectionsFilter {
   id: StringFilter
   label: StringFilter
   slug: StringFilter
+  title: StringFilter
+  description: StringFilter
   order: IntFilter
   featured_image_id: StringFilter
-  description: StringFilter
-  title: StringFilter
   nodeId: IDFilter
 
   """
@@ -1054,10 +1390,10 @@ input collectionsInsertInput {
   id: String
   label: String
   slug: String
+  title: String
+  description: String
   order: Int
   featured_image_id: String
-  description: String
-  title: String
 }
 
 type collectionsInsertResponse {
@@ -1072,20 +1408,20 @@ input collectionsOrderBy {
   id: OrderByDirection
   label: OrderByDirection
   slug: OrderByDirection
+  title: OrderByDirection
+  description: OrderByDirection
   order: OrderByDirection
   featured_image_id: OrderByDirection
-  description: OrderByDirection
-  title: OrderByDirection
 }
 
 input collectionsUpdateInput {
   id: String
   label: String
   slug: String
+  title: String
+  description: String
   order: Int
   featured_image_id: String
-  description: String
-  title: String
 }
 
 type collectionsUpdateResponse {
@@ -1104,8 +1440,8 @@ type comments implements Node {
   profileId: UUID!
   comment: String!
   created_at: Datetime!
-  product: products!
-  profile: profiles!
+  product: products
+  profile: profiles
 }
 
 type commentsConnection {
@@ -1196,25 +1532,6 @@ type medias implements Node {
   alt: String!
   created_at: Datetime
   updated_at: Datetime
-  productsCollection(
-    """Query the first `n` records in the collection"""
-    first: Int
-
-    """Query the last `n` records in the collection"""
-    last: Int
-
-    """Query values in the collection before the provided cursor"""
-    before: Cursor
-
-    """Query values in the collection after the provided cursor"""
-    after: Cursor
-
-    """Filters to apply to the results set when querying from the collection"""
-    filter: productsFilter
-
-    """Sort order to apply to the collection"""
-    orderBy: [productsOrderBy!]
-  ): productsConnection
   collectionsCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1227,6 +1544,11 @@ type medias implements Node {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: collectionsFilter
@@ -1247,12 +1569,41 @@ type medias implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: product_mediasFilter
 
     """Sort order to apply to the collection"""
     orderBy: [product_mediasOrderBy!]
   ): product_mediasConnection
+  productsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: productsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [productsOrderBy!]
+  ): productsConnection
 }
 
 type mediasConnection {
@@ -1344,8 +1695,8 @@ type order_lines implements Node {
   quantity: Int!
   price: BigFloat!
   created_at: Datetime!
-  products: products!
-  order: orders!
+  products: products
+  order: orders
 }
 
 type order_linesConnection {
@@ -1460,6 +1811,11 @@ type orders implements Node {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: order_linesFilter
@@ -1584,8 +1940,8 @@ type product_medias implements Node {
   productId: String!
   mediaId: String!
   priority: Int
-  product: products!
-  media: medias!
+  product: products
+  media: medias
 }
 
 type product_mediasConnection {
@@ -1675,16 +2031,18 @@ type products implements Node {
   badge: String
   rating: BigFloat!
   tags: JSON!
+  images: JSON!
   price: BigFloat!
   totalComments: Int!
   created_at: Datetime!
   stock: Int
   collection_id: String
-  featured_image_id: String!
-  images: JSON!
-  medias: medias!
+  featured_image_id: String
+  brand: String
+  source_urls: JSON
   collections: collections
-  cartsCollection(
+  medias: medias
+  commentsCollection(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -1697,12 +2055,17 @@ type products implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
-    filter: cartsFilter
+    filter: commentsFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [cartsOrderBy!]
-  ): cartsConnection
+    orderBy: [commentsOrderBy!]
+  ): commentsConnection
   order_linesCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1715,6 +2078,11 @@ type products implements Node {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: order_linesFilter
@@ -1735,6 +2103,11 @@ type products implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: product_mediasFilter
 
@@ -1754,13 +2127,18 @@ type products implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: wishlistFilter
 
     """Sort order to apply to the collection"""
     orderBy: [wishlistOrderBy!]
   ): wishlistConnection
-  commentsCollection(
+  cartsCollection(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -1773,12 +2151,41 @@ type products implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
-    filter: commentsFilter
+    filter: cartsFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [commentsOrderBy!]
-  ): commentsConnection
+    orderBy: [cartsOrderBy!]
+  ): cartsConnection
+  reviewsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: reviewsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [reviewsOrderBy!]
+  ): reviewsConnection
 }
 
 type productsConnection {
@@ -1813,6 +2220,7 @@ input productsFilter {
   stock: IntFilter
   collection_id: StringFilter
   featured_image_id: StringFilter
+  brand: StringFilter
   nodeId: IDFilter
 
   """
@@ -1838,13 +2246,15 @@ input productsInsertInput {
   badge: String
   rating: BigFloat
   tags: JSON
+  images: JSON
   price: BigFloat
   totalComments: Int
   created_at: Datetime
   stock: Int
   collection_id: String
   featured_image_id: String
-  images: JSON
+  brand: String
+  source_urls: JSON
 }
 
 type productsInsertResponse {
@@ -1869,6 +2279,7 @@ input productsOrderBy {
   stock: OrderByDirection
   collection_id: OrderByDirection
   featured_image_id: OrderByDirection
+  brand: OrderByDirection
 }
 
 input productsUpdateInput {
@@ -1880,13 +2291,15 @@ input productsUpdateInput {
   badge: String
   rating: BigFloat
   tags: JSON
+  images: JSON
   price: BigFloat
   totalComments: Int
   created_at: Datetime
   stock: Int
   collection_id: String
   featured_image_id: String
-  images: JSON
+  brand: String
+  source_urls: JSON
 }
 
 type productsUpdateResponse {
@@ -1902,9 +2315,33 @@ type profiles implements Node {
   nodeId: ID!
   id: UUID!
   name: String
+  is_admin: Boolean
   email: String
   created_at: Datetime!
-  is_admin: Boolean
+  commentsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: commentsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [commentsOrderBy!]
+  ): commentsConnection
   ordersCollection(
     """Query the first `n` records in the collection"""
     first: Int
@@ -1917,6 +2354,11 @@ type profiles implements Node {
 
     """Query values in the collection after the provided cursor"""
     after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
 
     """Filters to apply to the results set when querying from the collection"""
     filter: ordersFilter
@@ -1937,13 +2379,18 @@ type profiles implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
     filter: addressFilter
 
     """Sort order to apply to the collection"""
     orderBy: [addressOrderBy!]
   ): addressConnection
-  commentsCollection(
+  review_likesCollection(
     """Query the first `n` records in the collection"""
     first: Int
 
@@ -1956,12 +2403,41 @@ type profiles implements Node {
     """Query values in the collection after the provided cursor"""
     after: Cursor
 
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
     """Filters to apply to the results set when querying from the collection"""
-    filter: commentsFilter
+    filter: review_likesFilter
 
     """Sort order to apply to the collection"""
-    orderBy: [commentsOrderBy!]
-  ): commentsConnection
+    orderBy: [review_likesOrderBy!]
+  ): review_likesConnection
+  reviewsCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: reviewsFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [reviewsOrderBy!]
+  ): reviewsConnection
 }
 
 type profilesConnection {
@@ -1985,9 +2461,9 @@ type profilesEdge {
 input profilesFilter {
   id: UUIDFilter
   name: StringFilter
+  is_admin: BooleanFilter
   email: StringFilter
   created_at: DatetimeFilter
-  is_admin: BooleanFilter
   nodeId: IDFilter
 
   """
@@ -2007,9 +2483,9 @@ input profilesFilter {
 input profilesInsertInput {
   id: UUID
   name: String
+  is_admin: Boolean
   email: String
   created_at: Datetime
-  is_admin: Boolean
 }
 
 type profilesInsertResponse {
@@ -2023,17 +2499,17 @@ type profilesInsertResponse {
 input profilesOrderBy {
   id: OrderByDirection
   name: OrderByDirection
+  is_admin: OrderByDirection
   email: OrderByDirection
   created_at: OrderByDirection
-  is_admin: OrderByDirection
 }
 
 input profilesUpdateInput {
   id: UUID
   name: String
+  is_admin: Boolean
   email: String
   created_at: Datetime
-  is_admin: Boolean
 }
 
 type profilesUpdateResponse {
@@ -2044,13 +2520,336 @@ type profilesUpdateResponse {
   records: [profiles!]!
 }
 
+type review_images implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: String!
+  review_id: String!
+  image_url: String!
+  created_at: Datetime!
+  reviews: reviews
+}
+
+type review_imagesConnection {
+  edges: [review_imagesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type review_imagesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [review_images!]!
+}
+
+type review_imagesEdge {
+  cursor: String!
+  node: review_images!
+}
+
+input review_imagesFilter {
+  id: StringFilter
+  review_id: StringFilter
+  image_url: StringFilter
+  created_at: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [review_imagesFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [review_imagesFilter!]
+
+  """Negates a filter"""
+  not: review_imagesFilter
+}
+
+input review_imagesInsertInput {
+  id: String
+  review_id: String
+  image_url: String
+  created_at: Datetime
+}
+
+type review_imagesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [review_images!]!
+}
+
+input review_imagesOrderBy {
+  id: OrderByDirection
+  review_id: OrderByDirection
+  image_url: OrderByDirection
+  created_at: OrderByDirection
+}
+
+input review_imagesUpdateInput {
+  id: String
+  review_id: String
+  image_url: String
+  created_at: Datetime
+}
+
+type review_imagesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [review_images!]!
+}
+
+type review_likes implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  profile_id: UUID!
+  review_id: String!
+  created_at: Datetime!
+  profiles: profiles
+  reviews: reviews
+}
+
+type review_likesConnection {
+  edges: [review_likesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type review_likesDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [review_likes!]!
+}
+
+type review_likesEdge {
+  cursor: String!
+  node: review_likes!
+}
+
+input review_likesFilter {
+  profile_id: UUIDFilter
+  review_id: StringFilter
+  created_at: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [review_likesFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [review_likesFilter!]
+
+  """Negates a filter"""
+  not: review_likesFilter
+}
+
+input review_likesInsertInput {
+  profile_id: UUID
+  review_id: String
+  created_at: Datetime
+}
+
+type review_likesInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [review_likes!]!
+}
+
+input review_likesOrderBy {
+  profile_id: OrderByDirection
+  review_id: OrderByDirection
+  created_at: OrderByDirection
+}
+
+input review_likesUpdateInput {
+  profile_id: UUID
+  review_id: String
+  created_at: Datetime
+}
+
+type review_likesUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [review_likes!]!
+}
+
+type reviews implements Node {
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
+  id: String!
+  product_id: String!
+  profile_id: UUID!
+  rating: Int!
+  title: String
+  body: String
+  created_at: Datetime!
+  updated_at: Datetime!
+  products: products
+  profiles: profiles
+  review_imagesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: review_imagesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [review_imagesOrderBy!]
+  ): review_imagesConnection
+  review_likesCollection(
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: review_likesFilter
+
+    """Sort order to apply to the collection"""
+    orderBy: [review_likesOrderBy!]
+  ): review_likesConnection
+}
+
+type reviewsConnection {
+  edges: [reviewsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type reviewsDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [reviews!]!
+}
+
+type reviewsEdge {
+  cursor: String!
+  node: reviews!
+}
+
+input reviewsFilter {
+  id: StringFilter
+  product_id: StringFilter
+  profile_id: UUIDFilter
+  rating: IntFilter
+  title: StringFilter
+  body: StringFilter
+  created_at: DatetimeFilter
+  updated_at: DatetimeFilter
+  nodeId: IDFilter
+
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [reviewsFilter!]
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [reviewsFilter!]
+
+  """Negates a filter"""
+  not: reviewsFilter
+}
+
+input reviewsInsertInput {
+  id: String
+  product_id: String
+  profile_id: UUID
+  rating: Int
+  title: String
+  body: String
+  created_at: Datetime
+  updated_at: Datetime
+}
+
+type reviewsInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [reviews!]!
+}
+
+input reviewsOrderBy {
+  id: OrderByDirection
+  product_id: OrderByDirection
+  profile_id: OrderByDirection
+  rating: OrderByDirection
+  title: OrderByDirection
+  body: OrderByDirection
+  created_at: OrderByDirection
+  updated_at: OrderByDirection
+}
+
+input reviewsUpdateInput {
+  id: String
+  product_id: String
+  profile_id: UUID
+  rating: Int
+  title: String
+  body: String
+  created_at: Datetime
+  updated_at: Datetime
+}
+
+type reviewsUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [reviews!]!
+}
+
 type wishlist implements Node {
   """Globally Unique Record Identifier"""
   nodeId: ID!
   product_id: String!
   user_id: UUID!
   created_at: Datetime!
-  products: products!
+  products: products
 }
 
 type wishlistConnection {

@@ -24,7 +24,7 @@ export type Scalars = {
   BigInt: any;
   /** An opaque string using for tracking a position in results during pagination */
   Cursor: any;
-  /** A date wihout time information */
+  /** A date without time information */
   Date: any;
   /** A date and time */
   Datetime: any;
@@ -50,6 +50,15 @@ export type BigFloatFilter = {
   neq?: InputMaybe<Scalars["BigFloat"]>;
 };
 
+/** Boolean expression comparing fields on type "BigFloatList" */
+export type BigFloatListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["BigFloat"]>>;
+  contains?: InputMaybe<Array<Scalars["BigFloat"]>>;
+  eq?: InputMaybe<Array<Scalars["BigFloat"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["BigFloat"]>>;
+};
+
 /** Boolean expression comparing fields on type "BigInt" */
 export type BigIntFilter = {
   eq?: InputMaybe<Scalars["BigInt"]>;
@@ -62,10 +71,28 @@ export type BigIntFilter = {
   neq?: InputMaybe<Scalars["BigInt"]>;
 };
 
+/** Boolean expression comparing fields on type "BigIntList" */
+export type BigIntListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["BigInt"]>>;
+  contains?: InputMaybe<Array<Scalars["BigInt"]>>;
+  eq?: InputMaybe<Array<Scalars["BigInt"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["BigInt"]>>;
+};
+
 /** Boolean expression comparing fields on type "Boolean" */
 export type BooleanFilter = {
   eq?: InputMaybe<Scalars["Boolean"]>;
   is?: InputMaybe<FilterIs>;
+};
+
+/** Boolean expression comparing fields on type "BooleanList" */
+export type BooleanListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["Boolean"]>>;
+  contains?: InputMaybe<Array<Scalars["Boolean"]>>;
+  eq?: InputMaybe<Array<Scalars["Boolean"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["Boolean"]>>;
 };
 
 /** Boolean expression comparing fields on type "Date" */
@@ -80,6 +107,15 @@ export type DateFilter = {
   neq?: InputMaybe<Scalars["Date"]>;
 };
 
+/** Boolean expression comparing fields on type "DateList" */
+export type DateListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["Date"]>>;
+  contains?: InputMaybe<Array<Scalars["Date"]>>;
+  eq?: InputMaybe<Array<Scalars["Date"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["Date"]>>;
+};
+
 /** Boolean expression comparing fields on type "Datetime" */
 export type DatetimeFilter = {
   eq?: InputMaybe<Scalars["Datetime"]>;
@@ -90,6 +126,15 @@ export type DatetimeFilter = {
   lt?: InputMaybe<Scalars["Datetime"]>;
   lte?: InputMaybe<Scalars["Datetime"]>;
   neq?: InputMaybe<Scalars["Datetime"]>;
+};
+
+/** Boolean expression comparing fields on type "DatetimeList" */
+export type DatetimeListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["Datetime"]>>;
+  contains?: InputMaybe<Array<Scalars["Datetime"]>>;
+  eq?: InputMaybe<Array<Scalars["Datetime"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["Datetime"]>>;
 };
 
 export enum FilterIs {
@@ -109,6 +154,15 @@ export type FloatFilter = {
   neq?: InputMaybe<Scalars["Float"]>;
 };
 
+/** Boolean expression comparing fields on type "FloatList" */
+export type FloatListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["Float"]>>;
+  contains?: InputMaybe<Array<Scalars["Float"]>>;
+  eq?: InputMaybe<Array<Scalars["Float"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["Float"]>>;
+};
+
 /** Boolean expression comparing fields on type "ID" */
 export type IdFilter = {
   eq?: InputMaybe<Scalars["ID"]>;
@@ -126,10 +180,18 @@ export type IntFilter = {
   neq?: InputMaybe<Scalars["Int"]>;
 };
 
+/** Boolean expression comparing fields on type "IntList" */
+export type IntListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["Int"]>>;
+  contains?: InputMaybe<Array<Scalars["Int"]>>;
+  eq?: InputMaybe<Array<Scalars["Int"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["Int"]>>;
+};
+
 /** The root type for creating and mutating data */
 export type Mutation = {
   __typename?: "Mutation";
-  custom_access_token_hook?: Maybe<Scalars["JSON"]>;
   /** Deletes zero or more records from the `address` collection */
   deleteFromaddressCollection: AddressDeleteResponse;
   /** Deletes zero or more records from the `carts` collection */
@@ -150,6 +212,12 @@ export type Mutation = {
   deleteFromproductsCollection: ProductsDeleteResponse;
   /** Deletes zero or more records from the `profiles` collection */
   deleteFromprofilesCollection: ProfilesDeleteResponse;
+  /** Deletes zero or more records from the `review_images` collection */
+  deleteFromreview_imagesCollection: Review_ImagesDeleteResponse;
+  /** Deletes zero or more records from the `review_likes` collection */
+  deleteFromreview_likesCollection: Review_LikesDeleteResponse;
+  /** Deletes zero or more records from the `reviews` collection */
+  deleteFromreviewsCollection: ReviewsDeleteResponse;
   /** Deletes zero or more records from the `wishlist` collection */
   deleteFromwishlistCollection: WishlistDeleteResponse;
   /** Adds one or more `address` records to the collection */
@@ -172,6 +240,12 @@ export type Mutation = {
   insertIntoproductsCollection?: Maybe<ProductsInsertResponse>;
   /** Adds one or more `profiles` records to the collection */
   insertIntoprofilesCollection?: Maybe<ProfilesInsertResponse>;
+  /** Adds one or more `review_images` records to the collection */
+  insertIntoreview_imagesCollection?: Maybe<Review_ImagesInsertResponse>;
+  /** Adds one or more `review_likes` records to the collection */
+  insertIntoreview_likesCollection?: Maybe<Review_LikesInsertResponse>;
+  /** Adds one or more `reviews` records to the collection */
+  insertIntoreviewsCollection?: Maybe<ReviewsInsertResponse>;
   /** Adds one or more `wishlist` records to the collection */
   insertIntowishlistCollection?: Maybe<WishlistInsertResponse>;
   /** Updates zero or more records in the `address` collection */
@@ -194,13 +268,14 @@ export type Mutation = {
   updateproductsCollection: ProductsUpdateResponse;
   /** Updates zero or more records in the `profiles` collection */
   updateprofilesCollection: ProfilesUpdateResponse;
+  /** Updates zero or more records in the `review_images` collection */
+  updatereview_imagesCollection: Review_ImagesUpdateResponse;
+  /** Updates zero or more records in the `review_likes` collection */
+  updatereview_likesCollection: Review_LikesUpdateResponse;
+  /** Updates zero or more records in the `reviews` collection */
+  updatereviewsCollection: ReviewsUpdateResponse;
   /** Updates zero or more records in the `wishlist` collection */
   updatewishlistCollection: WishlistUpdateResponse;
-};
-
-/** The root type for creating and mutating data */
-export type MutationCustom_Access_Token_HookArgs = {
-  event?: InputMaybe<Scalars["JSON"]>;
 };
 
 /** The root type for creating and mutating data */
@@ -264,6 +339,24 @@ export type MutationDeleteFromprofilesCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromreview_ImagesCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<Review_ImagesFilter>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationDeleteFromreview_LikesCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<Review_LikesFilter>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationDeleteFromreviewsCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<ReviewsFilter>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationDeleteFromwishlistCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<WishlistFilter>;
@@ -317,6 +410,21 @@ export type MutationInsertIntoproductsCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntoprofilesCollectionArgs = {
   objects: Array<ProfilesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntoreview_ImagesCollectionArgs = {
+  objects: Array<Review_ImagesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntoreview_LikesCollectionArgs = {
+  objects: Array<Review_LikesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntoreviewsCollectionArgs = {
+  objects: Array<ReviewsInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -395,6 +503,27 @@ export type MutationUpdateprofilesCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationUpdatereview_ImagesCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<Review_ImagesFilter>;
+  set: Review_ImagesUpdateInput;
+};
+
+/** The root type for creating and mutating data */
+export type MutationUpdatereview_LikesCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<Review_LikesFilter>;
+  set: Review_LikesUpdateInput;
+};
+
+/** The root type for creating and mutating data */
+export type MutationUpdatereviewsCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<ReviewsFilter>;
+  set: ReviewsUpdateInput;
+};
+
+/** The root type for creating and mutating data */
 export type MutationUpdatewishlistCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<WishlistFilter>;
@@ -457,6 +586,12 @@ export type Query = {
   productsCollection?: Maybe<ProductsConnection>;
   /** A pagable collection of type `profiles` */
   profilesCollection?: Maybe<ProfilesConnection>;
+  /** A pagable collection of type `review_images` */
+  review_imagesCollection?: Maybe<Review_ImagesConnection>;
+  /** A pagable collection of type `review_likes` */
+  review_likesCollection?: Maybe<Review_LikesConnection>;
+  /** A pagable collection of type `reviews` */
+  reviewsCollection?: Maybe<ReviewsConnection>;
   /** A pagable collection of type `wishlist` */
   wishlistCollection?: Maybe<WishlistConnection>;
 };
@@ -468,6 +603,7 @@ export type QueryAddressCollectionArgs = {
   filter?: InputMaybe<AddressFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AddressOrderBy>>;
 };
 
@@ -478,6 +614,7 @@ export type QueryCartsCollectionArgs = {
   filter?: InputMaybe<CartsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CartsOrderBy>>;
 };
 
@@ -488,6 +625,7 @@ export type QueryCollectionsCollectionArgs = {
   filter?: InputMaybe<CollectionsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CollectionsOrderBy>>;
 };
 
@@ -498,6 +636,7 @@ export type QueryCommentsCollectionArgs = {
   filter?: InputMaybe<CommentsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CommentsOrderBy>>;
 };
 
@@ -508,6 +647,7 @@ export type QueryMediasCollectionArgs = {
   filter?: InputMaybe<MediasFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<MediasOrderBy>>;
 };
 
@@ -523,6 +663,7 @@ export type QueryOrder_LinesCollectionArgs = {
   filter?: InputMaybe<Order_LinesFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<Order_LinesOrderBy>>;
 };
 
@@ -533,6 +674,7 @@ export type QueryOrdersCollectionArgs = {
   filter?: InputMaybe<OrdersFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<OrdersOrderBy>>;
 };
 
@@ -543,6 +685,7 @@ export type QueryProduct_MediasCollectionArgs = {
   filter?: InputMaybe<Product_MediasFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<Product_MediasOrderBy>>;
 };
 
@@ -553,6 +696,7 @@ export type QueryProductsCollectionArgs = {
   filter?: InputMaybe<ProductsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ProductsOrderBy>>;
 };
 
@@ -563,7 +707,41 @@ export type QueryProfilesCollectionArgs = {
   filter?: InputMaybe<ProfilesFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ProfilesOrderBy>>;
+};
+
+/** The root type for querying data */
+export type QueryReview_ImagesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<Review_ImagesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<Review_ImagesOrderBy>>;
+};
+
+/** The root type for querying data */
+export type QueryReview_LikesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<Review_LikesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<Review_LikesOrderBy>>;
+};
+
+/** The root type for querying data */
+export type QueryReviewsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<ReviewsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<ReviewsOrderBy>>;
 };
 
 /** The root type for querying data */
@@ -573,6 +751,7 @@ export type QueryWishlistCollectionArgs = {
   filter?: InputMaybe<WishlistFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<WishlistOrderBy>>;
 };
 
@@ -593,6 +772,15 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars["String"]>;
 };
 
+/** Boolean expression comparing fields on type "StringList" */
+export type StringListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["String"]>>;
+  contains?: InputMaybe<Array<Scalars["String"]>>;
+  eq?: InputMaybe<Array<Scalars["String"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["String"]>>;
+};
+
 /** Boolean expression comparing fields on type "Time" */
 export type TimeFilter = {
   eq?: InputMaybe<Scalars["Time"]>;
@@ -605,12 +793,30 @@ export type TimeFilter = {
   neq?: InputMaybe<Scalars["Time"]>;
 };
 
+/** Boolean expression comparing fields on type "TimeList" */
+export type TimeListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["Time"]>>;
+  contains?: InputMaybe<Array<Scalars["Time"]>>;
+  eq?: InputMaybe<Array<Scalars["Time"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["Time"]>>;
+};
+
 /** Boolean expression comparing fields on type "UUID" */
 export type UuidFilter = {
   eq?: InputMaybe<Scalars["UUID"]>;
   in?: InputMaybe<Array<Scalars["UUID"]>>;
   is?: InputMaybe<FilterIs>;
   neq?: InputMaybe<Scalars["UUID"]>;
+};
+
+/** Boolean expression comparing fields on type "UUIDList" */
+export type UuidListFilter = {
+  containedBy?: InputMaybe<Array<Scalars["UUID"]>>;
+  contains?: InputMaybe<Array<Scalars["UUID"]>>;
+  eq?: InputMaybe<Array<Scalars["UUID"]>>;
+  is?: InputMaybe<FilterIs>;
+  overlaps?: InputMaybe<Array<Scalars["UUID"]>>;
 };
 
 export type Address = Node & {
@@ -721,7 +927,7 @@ export type Carts = Node & {
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
   product_id: Scalars["String"];
-  products: Products;
+  products?: Maybe<Products>;
   quantity: Scalars["Int"];
   user_id: Scalars["UUID"];
 };
@@ -803,7 +1009,7 @@ export type Collections = Node & {
   featured_image_id: Scalars["String"];
   id: Scalars["String"];
   label: Scalars["String"];
-  medias: Medias;
+  medias?: Maybe<Medias>;
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
   order?: Maybe<Scalars["Int"]>;
@@ -818,6 +1024,7 @@ export type CollectionsProductsCollectionArgs = {
   filter?: InputMaybe<ProductsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ProductsOrderBy>>;
 };
 
@@ -911,9 +1118,9 @@ export type Comments = Node & {
   id: Scalars["String"];
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
-  product: Products;
+  product?: Maybe<Products>;
   productId: Scalars["String"];
-  profile: Profiles;
+  profile?: Maybe<Profiles>;
   profileId: Scalars["UUID"];
 };
 
@@ -1012,6 +1219,7 @@ export type MediasCollectionsCollectionArgs = {
   filter?: InputMaybe<CollectionsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CollectionsOrderBy>>;
 };
 
@@ -1021,6 +1229,7 @@ export type MediasProduct_MediasCollectionArgs = {
   filter?: InputMaybe<Product_MediasFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<Product_MediasOrderBy>>;
 };
 
@@ -1030,6 +1239,7 @@ export type MediasProductsCollectionArgs = {
   filter?: InputMaybe<ProductsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ProductsOrderBy>>;
 };
 
@@ -1114,11 +1324,11 @@ export type Order_Lines = Node & {
   id: Scalars["String"];
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
-  order: Orders;
+  order?: Maybe<Orders>;
   orderId: Scalars["String"];
   price: Scalars["BigFloat"];
   product_id: Scalars["String"];
-  products: Products;
+  products?: Maybe<Products>;
   quantity: Scalars["Int"];
 };
 
@@ -1227,6 +1437,7 @@ export type OrdersOrder_LinesCollectionArgs = {
   filter?: InputMaybe<Order_LinesFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<Order_LinesOrderBy>>;
 };
 
@@ -1336,12 +1547,12 @@ export type OrdersUpdateResponse = {
 export type Product_Medias = Node & {
   __typename?: "product_medias";
   id: Scalars["String"];
-  media: Medias;
+  media?: Maybe<Medias>;
   mediaId: Scalars["String"];
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
   priority?: Maybe<Scalars["Int"]>;
-  product: Products;
+  product?: Maybe<Products>;
   productId: Scalars["String"];
 };
 
@@ -1419,6 +1630,7 @@ export type Product_MediasUpdateResponse = {
 export type Products = Node & {
   __typename?: "products";
   badge?: Maybe<Scalars["String"]>;
+  brand?: Maybe<Scalars["String"]>;
   cartsCollection?: Maybe<CartsConnection>;
   collection_id?: Maybe<Scalars["String"]>;
   collections?: Maybe<Collections>;
@@ -1426,10 +1638,10 @@ export type Products = Node & {
   created_at: Scalars["Datetime"];
   description?: Maybe<Scalars["String"]>;
   featured?: Maybe<Scalars["Boolean"]>;
-  featured_image_id: Scalars["String"];
+  featured_image_id?: Maybe<Scalars["String"]>;
   id: Scalars["String"];
   images: Scalars["JSON"];
-  medias: Medias;
+  medias?: Maybe<Medias>;
   name: Scalars["String"];
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
@@ -1437,7 +1649,9 @@ export type Products = Node & {
   price: Scalars["BigFloat"];
   product_mediasCollection?: Maybe<Product_MediasConnection>;
   rating: Scalars["BigFloat"];
+  reviewsCollection?: Maybe<ReviewsConnection>;
   slug: Scalars["String"];
+  source_urls?: Maybe<Scalars["JSON"]>;
   stock?: Maybe<Scalars["Int"]>;
   tags: Scalars["JSON"];
   totalComments: Scalars["Int"];
@@ -1450,6 +1664,7 @@ export type ProductsCartsCollectionArgs = {
   filter?: InputMaybe<CartsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CartsOrderBy>>;
 };
 
@@ -1459,6 +1674,7 @@ export type ProductsCommentsCollectionArgs = {
   filter?: InputMaybe<CommentsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CommentsOrderBy>>;
 };
 
@@ -1468,6 +1684,7 @@ export type ProductsOrder_LinesCollectionArgs = {
   filter?: InputMaybe<Order_LinesFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<Order_LinesOrderBy>>;
 };
 
@@ -1477,7 +1694,18 @@ export type ProductsProduct_MediasCollectionArgs = {
   filter?: InputMaybe<Product_MediasFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<Product_MediasOrderBy>>;
+};
+
+export type ProductsReviewsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<ReviewsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<ReviewsOrderBy>>;
 };
 
 export type ProductsWishlistCollectionArgs = {
@@ -1486,6 +1714,7 @@ export type ProductsWishlistCollectionArgs = {
   filter?: InputMaybe<WishlistFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<WishlistOrderBy>>;
 };
 
@@ -1513,6 +1742,7 @@ export type ProductsFilter = {
   /** Returns true only if all its inner filters are true, otherwise returns false */
   and?: InputMaybe<Array<ProductsFilter>>;
   badge?: InputMaybe<StringFilter>;
+  brand?: InputMaybe<StringFilter>;
   collection_id?: InputMaybe<StringFilter>;
   created_at?: InputMaybe<DatetimeFilter>;
   description?: InputMaybe<StringFilter>;
@@ -1534,6 +1764,7 @@ export type ProductsFilter = {
 
 export type ProductsInsertInput = {
   badge?: InputMaybe<Scalars["String"]>;
+  brand?: InputMaybe<Scalars["String"]>;
   collection_id?: InputMaybe<Scalars["String"]>;
   created_at?: InputMaybe<Scalars["Datetime"]>;
   description?: InputMaybe<Scalars["String"]>;
@@ -1545,6 +1776,7 @@ export type ProductsInsertInput = {
   price?: InputMaybe<Scalars["BigFloat"]>;
   rating?: InputMaybe<Scalars["BigFloat"]>;
   slug?: InputMaybe<Scalars["String"]>;
+  source_urls?: InputMaybe<Scalars["JSON"]>;
   stock?: InputMaybe<Scalars["Int"]>;
   tags?: InputMaybe<Scalars["JSON"]>;
   totalComments?: InputMaybe<Scalars["Int"]>;
@@ -1560,6 +1792,7 @@ export type ProductsInsertResponse = {
 
 export type ProductsOrderBy = {
   badge?: InputMaybe<OrderByDirection>;
+  brand?: InputMaybe<OrderByDirection>;
   collection_id?: InputMaybe<OrderByDirection>;
   created_at?: InputMaybe<OrderByDirection>;
   description?: InputMaybe<OrderByDirection>;
@@ -1576,6 +1809,7 @@ export type ProductsOrderBy = {
 
 export type ProductsUpdateInput = {
   badge?: InputMaybe<Scalars["String"]>;
+  brand?: InputMaybe<Scalars["String"]>;
   collection_id?: InputMaybe<Scalars["String"]>;
   created_at?: InputMaybe<Scalars["Datetime"]>;
   description?: InputMaybe<Scalars["String"]>;
@@ -1587,6 +1821,7 @@ export type ProductsUpdateInput = {
   price?: InputMaybe<Scalars["BigFloat"]>;
   rating?: InputMaybe<Scalars["BigFloat"]>;
   slug?: InputMaybe<Scalars["String"]>;
+  source_urls?: InputMaybe<Scalars["JSON"]>;
   stock?: InputMaybe<Scalars["Int"]>;
   tags?: InputMaybe<Scalars["JSON"]>;
   totalComments?: InputMaybe<Scalars["Int"]>;
@@ -1612,6 +1847,8 @@ export type Profiles = Node & {
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
   ordersCollection?: Maybe<OrdersConnection>;
+  review_likesCollection?: Maybe<Review_LikesConnection>;
+  reviewsCollection?: Maybe<ReviewsConnection>;
 };
 
 export type ProfilesAddressCollectionArgs = {
@@ -1620,6 +1857,7 @@ export type ProfilesAddressCollectionArgs = {
   filter?: InputMaybe<AddressFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AddressOrderBy>>;
 };
 
@@ -1629,6 +1867,7 @@ export type ProfilesCommentsCollectionArgs = {
   filter?: InputMaybe<CommentsFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CommentsOrderBy>>;
 };
 
@@ -1638,7 +1877,28 @@ export type ProfilesOrdersCollectionArgs = {
   filter?: InputMaybe<OrdersFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<OrdersOrderBy>>;
+};
+
+export type ProfilesReview_LikesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<Review_LikesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<Review_LikesOrderBy>>;
+};
+
+export type ProfilesReviewsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<ReviewsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<ReviewsOrderBy>>;
 };
 
 export type ProfilesConnection = {
@@ -1716,13 +1976,298 @@ export type ProfilesUpdateResponse = {
   records: Array<Profiles>;
 };
 
+export type Review_Images = Node & {
+  __typename?: "review_images";
+  created_at: Scalars["Datetime"];
+  id: Scalars["String"];
+  image_url: Scalars["String"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
+  review_id: Scalars["String"];
+  reviews?: Maybe<Reviews>;
+};
+
+export type Review_ImagesConnection = {
+  __typename?: "review_imagesConnection";
+  edges: Array<Review_ImagesEdge>;
+  pageInfo: PageInfo;
+};
+
+export type Review_ImagesDeleteResponse = {
+  __typename?: "review_imagesDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Review_Images>;
+};
+
+export type Review_ImagesEdge = {
+  __typename?: "review_imagesEdge";
+  cursor: Scalars["String"];
+  node: Review_Images;
+};
+
+export type Review_ImagesFilter = {
+  /** Returns true only if all its inner filters are true, otherwise returns false */
+  and?: InputMaybe<Array<Review_ImagesFilter>>;
+  created_at?: InputMaybe<DatetimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  image_url?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
+  /** Negates a filter */
+  not?: InputMaybe<Review_ImagesFilter>;
+  /** Returns true if at least one of its inner filters is true, otherwise returns false */
+  or?: InputMaybe<Array<Review_ImagesFilter>>;
+  review_id?: InputMaybe<StringFilter>;
+};
+
+export type Review_ImagesInsertInput = {
+  created_at?: InputMaybe<Scalars["Datetime"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  image_url?: InputMaybe<Scalars["String"]>;
+  review_id?: InputMaybe<Scalars["String"]>;
+};
+
+export type Review_ImagesInsertResponse = {
+  __typename?: "review_imagesInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Review_Images>;
+};
+
+export type Review_ImagesOrderBy = {
+  created_at?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  image_url?: InputMaybe<OrderByDirection>;
+  review_id?: InputMaybe<OrderByDirection>;
+};
+
+export type Review_ImagesUpdateInput = {
+  created_at?: InputMaybe<Scalars["Datetime"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  image_url?: InputMaybe<Scalars["String"]>;
+  review_id?: InputMaybe<Scalars["String"]>;
+};
+
+export type Review_ImagesUpdateResponse = {
+  __typename?: "review_imagesUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Review_Images>;
+};
+
+export type Review_Likes = Node & {
+  __typename?: "review_likes";
+  created_at: Scalars["Datetime"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
+  profile_id: Scalars["UUID"];
+  profiles?: Maybe<Profiles>;
+  review_id: Scalars["String"];
+  reviews?: Maybe<Reviews>;
+};
+
+export type Review_LikesConnection = {
+  __typename?: "review_likesConnection";
+  edges: Array<Review_LikesEdge>;
+  pageInfo: PageInfo;
+};
+
+export type Review_LikesDeleteResponse = {
+  __typename?: "review_likesDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Review_Likes>;
+};
+
+export type Review_LikesEdge = {
+  __typename?: "review_likesEdge";
+  cursor: Scalars["String"];
+  node: Review_Likes;
+};
+
+export type Review_LikesFilter = {
+  /** Returns true only if all its inner filters are true, otherwise returns false */
+  and?: InputMaybe<Array<Review_LikesFilter>>;
+  created_at?: InputMaybe<DatetimeFilter>;
+  nodeId?: InputMaybe<IdFilter>;
+  /** Negates a filter */
+  not?: InputMaybe<Review_LikesFilter>;
+  /** Returns true if at least one of its inner filters is true, otherwise returns false */
+  or?: InputMaybe<Array<Review_LikesFilter>>;
+  profile_id?: InputMaybe<UuidFilter>;
+  review_id?: InputMaybe<StringFilter>;
+};
+
+export type Review_LikesInsertInput = {
+  created_at?: InputMaybe<Scalars["Datetime"]>;
+  profile_id?: InputMaybe<Scalars["UUID"]>;
+  review_id?: InputMaybe<Scalars["String"]>;
+};
+
+export type Review_LikesInsertResponse = {
+  __typename?: "review_likesInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Review_Likes>;
+};
+
+export type Review_LikesOrderBy = {
+  created_at?: InputMaybe<OrderByDirection>;
+  profile_id?: InputMaybe<OrderByDirection>;
+  review_id?: InputMaybe<OrderByDirection>;
+};
+
+export type Review_LikesUpdateInput = {
+  created_at?: InputMaybe<Scalars["Datetime"]>;
+  profile_id?: InputMaybe<Scalars["UUID"]>;
+  review_id?: InputMaybe<Scalars["String"]>;
+};
+
+export type Review_LikesUpdateResponse = {
+  __typename?: "review_likesUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Review_Likes>;
+};
+
+export type Reviews = Node & {
+  __typename?: "reviews";
+  body?: Maybe<Scalars["String"]>;
+  created_at: Scalars["Datetime"];
+  id: Scalars["String"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
+  product_id: Scalars["String"];
+  products?: Maybe<Products>;
+  profile_id: Scalars["UUID"];
+  profiles?: Maybe<Profiles>;
+  rating: Scalars["Int"];
+  review_imagesCollection?: Maybe<Review_ImagesConnection>;
+  review_likesCollection?: Maybe<Review_LikesConnection>;
+  title?: Maybe<Scalars["String"]>;
+  updated_at: Scalars["Datetime"];
+};
+
+export type ReviewsReview_ImagesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<Review_ImagesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<Review_ImagesOrderBy>>;
+};
+
+export type ReviewsReview_LikesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<Review_LikesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<Review_LikesOrderBy>>;
+};
+
+export type ReviewsConnection = {
+  __typename?: "reviewsConnection";
+  edges: Array<ReviewsEdge>;
+  pageInfo: PageInfo;
+};
+
+export type ReviewsDeleteResponse = {
+  __typename?: "reviewsDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Reviews>;
+};
+
+export type ReviewsEdge = {
+  __typename?: "reviewsEdge";
+  cursor: Scalars["String"];
+  node: Reviews;
+};
+
+export type ReviewsFilter = {
+  /** Returns true only if all its inner filters are true, otherwise returns false */
+  and?: InputMaybe<Array<ReviewsFilter>>;
+  body?: InputMaybe<StringFilter>;
+  created_at?: InputMaybe<DatetimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
+  /** Negates a filter */
+  not?: InputMaybe<ReviewsFilter>;
+  /** Returns true if at least one of its inner filters is true, otherwise returns false */
+  or?: InputMaybe<Array<ReviewsFilter>>;
+  product_id?: InputMaybe<StringFilter>;
+  profile_id?: InputMaybe<UuidFilter>;
+  rating?: InputMaybe<IntFilter>;
+  title?: InputMaybe<StringFilter>;
+  updated_at?: InputMaybe<DatetimeFilter>;
+};
+
+export type ReviewsInsertInput = {
+  body?: InputMaybe<Scalars["String"]>;
+  created_at?: InputMaybe<Scalars["Datetime"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  product_id?: InputMaybe<Scalars["String"]>;
+  profile_id?: InputMaybe<Scalars["UUID"]>;
+  rating?: InputMaybe<Scalars["Int"]>;
+  title?: InputMaybe<Scalars["String"]>;
+  updated_at?: InputMaybe<Scalars["Datetime"]>;
+};
+
+export type ReviewsInsertResponse = {
+  __typename?: "reviewsInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Reviews>;
+};
+
+export type ReviewsOrderBy = {
+  body?: InputMaybe<OrderByDirection>;
+  created_at?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  product_id?: InputMaybe<OrderByDirection>;
+  profile_id?: InputMaybe<OrderByDirection>;
+  rating?: InputMaybe<OrderByDirection>;
+  title?: InputMaybe<OrderByDirection>;
+  updated_at?: InputMaybe<OrderByDirection>;
+};
+
+export type ReviewsUpdateInput = {
+  body?: InputMaybe<Scalars["String"]>;
+  created_at?: InputMaybe<Scalars["Datetime"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  product_id?: InputMaybe<Scalars["String"]>;
+  profile_id?: InputMaybe<Scalars["UUID"]>;
+  rating?: InputMaybe<Scalars["Int"]>;
+  title?: InputMaybe<Scalars["String"]>;
+  updated_at?: InputMaybe<Scalars["Datetime"]>;
+};
+
+export type ReviewsUpdateResponse = {
+  __typename?: "reviewsUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<Reviews>;
+};
+
 export type Wishlist = Node & {
   __typename?: "wishlist";
   created_at: Scalars["Datetime"];
   /** Globally Unique Record Identifier */
   nodeId: Scalars["ID"];
   product_id: Scalars["String"];
-  products: Products;
+  products?: Maybe<Products>;
   user_id: Scalars["UUID"];
 };
 
@@ -1889,12 +2434,106 @@ export type AdminProductsPageQueryQuery = {
         badge?: string | null;
         price: any;
         featured?: boolean | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
+        collections?: {
+          __typename?: "collections";
+          id: string;
+          label: string;
+          slug: string;
+        } | null;
+      };
+    }>;
+  } | null;
+};
+
+export type ProductDetailPageQueryQueryVariables = Exact<{
+  productSlug?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type ProductDetailPageQueryQuery = {
+  __typename?: "Query";
+  productsCollection?: {
+    __typename?: "productsConnection";
+    edges: Array<{
+      __typename?: "productsEdge";
+      node: {
+        __typename?: "products";
+        id: string;
+        name: string;
+        description?: string | null;
+        rating: any;
+        price: any;
+        tags: any;
+        totalComments: number;
+        commentsCollection?: {
+          __typename?: "commentsConnection";
+          edges: Array<{
+            __typename?: "commentsEdge";
+            node: {
+              __typename?: "comments";
+              id: string;
+              comment: string;
+              profile?: {
+                __typename?: "profiles";
+                name?: string | null;
+              } | null;
+            };
+          }>;
+        } | null;
+        collections?: {
+          __typename?: "collections";
+          id: string;
+          label: string;
+          slug: string;
+        } | null;
+        featuredImage?: {
+          __typename?: "medias";
+          id: string;
+          key: string;
+          alt: string;
+        } | null;
+        images?: {
+          __typename?: "product_mediasConnection";
+          edges: Array<{
+            __typename?: "product_mediasEdge";
+            node: {
+              __typename?: "product_medias";
+              media?: {
+                __typename?: "medias";
+                id: string;
+                key: string;
+                alt: string;
+              } | null;
+            };
+          }>;
+        } | null;
+      };
+    }>;
+  } | null;
+  recommendations?: {
+    __typename?: "productsConnection";
+    edges: Array<{
+      __typename?: "productsEdge";
+      node: {
+        __typename?: "products";
+        id: string;
+        name: string;
+        description?: string | null;
+        rating: any;
+        slug: string;
+        badge?: string | null;
+        price: any;
+        featuredImage?: {
+          __typename?: "medias";
+          id: string;
+          key: string;
+          alt: string;
+        } | null;
         collections?: {
           __typename?: "collections";
           id: string;
@@ -1937,12 +2576,12 @@ export type CollectionRouteQueryQuery = {
               slug: string;
               badge?: string | null;
               price: any;
-              featuredImage: {
+              featuredImage?: {
                 __typename?: "medias";
                 id: string;
                 key: string;
                 alt: string;
-              };
+              } | null;
               collections?: {
                 __typename?: "collections";
                 id: string;
@@ -1952,12 +2591,12 @@ export type CollectionRouteQueryQuery = {
             };
           }>;
         } | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
       };
     }>;
   } | null;
@@ -1987,7 +2626,7 @@ export type OrderPageQueryQuery = {
             node: {
               __typename?: "order_lines";
               id: string;
-              products: {
+              products?: {
                 __typename?: "products";
                 id: string;
                 featured?: boolean | null;
@@ -1995,13 +2634,13 @@ export type OrderPageQueryQuery = {
                 name: string;
                 slug: string;
                 description?: string | null;
-                featuredImage: {
+                featuredImage?: {
                   __typename?: "medias";
                   id: string;
                   key: string;
                   alt: string;
-                };
-              };
+                } | null;
+              } | null;
             };
           }>;
         } | null;
@@ -2020,12 +2659,12 @@ export type OrderPageQueryQuery = {
         name: string;
         slug: string;
         description?: string | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
       };
     }>;
   } | null;
@@ -2050,12 +2689,12 @@ export type LandingRouteQueryQuery = {
         slug: string;
         badge?: string | null;
         price: any;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
         collections?: {
           __typename?: "collections";
           id: string;
@@ -2088,97 +2727,10 @@ export type LandingRouteQueryQuery = {
         id: string;
         label: string;
         slug: string;
-        featuredImage: { __typename?: "medias"; key: string; alt: string };
-      };
-    }>;
-  } | null;
-};
-
-export type ProductDetailPageQueryQueryVariables = Exact<{
-  productSlug?: InputMaybe<Scalars["String"]>;
-}>;
-
-export type ProductDetailPageQueryQuery = {
-  __typename?: "Query";
-  productsCollection?: {
-    __typename?: "productsConnection";
-    edges: Array<{
-      __typename?: "productsEdge";
-      node: {
-        __typename?: "products";
-        id: string;
-        name: string;
-        description?: string | null;
-        rating: any;
-        price: any;
-        tags: any;
-        totalComments: number;
-        commentsCollection?: {
-          __typename?: "commentsConnection";
-          edges: Array<{
-            __typename?: "commentsEdge";
-            node: {
-              __typename?: "comments";
-              id: string;
-              comment: string;
-              profile: { __typename?: "profiles"; name?: string | null };
-            };
-          }>;
-        } | null;
-        collections?: {
-          __typename?: "collections";
-          id: string;
-          label: string;
-          slug: string;
-        } | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
-          id: string;
           key: string;
           alt: string;
-        };
-        images?: {
-          __typename?: "product_mediasConnection";
-          edges: Array<{
-            __typename?: "product_mediasEdge";
-            node: {
-              __typename?: "product_medias";
-              media: {
-                __typename?: "medias";
-                id: string;
-                key: string;
-                alt: string;
-              };
-            };
-          }>;
-        } | null;
-      };
-    }>;
-  } | null;
-  recommendations?: {
-    __typename?: "productsConnection";
-    edges: Array<{
-      __typename?: "productsEdge";
-      node: {
-        __typename?: "products";
-        id: string;
-        name: string;
-        description?: string | null;
-        rating: any;
-        slug: string;
-        badge?: string | null;
-        price: any;
-        featuredImage: {
-          __typename?: "medias";
-          id: string;
-          key: string;
-          alt: string;
-        };
-        collections?: {
-          __typename?: "collections";
-          id: string;
-          label: string;
-          slug: string;
         } | null;
       };
     }>;
@@ -2192,12 +2744,12 @@ export type CartItemCardFragmentFragment = {
   name: string;
   price: any;
   description?: string | null;
-  featuredImage: {
+  featuredImage?: {
     __typename?: "medias";
     id: string;
     key: string;
     alt: string;
-  };
+  } | null;
 };
 
 export type FetchGuestCartQueryQueryVariables = Exact<{
@@ -2219,12 +2771,12 @@ export type FetchGuestCartQueryQuery = {
         name: string;
         price: any;
         description?: string | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
       };
     }>;
   } | null;
@@ -2247,20 +2799,20 @@ export type FetchCartQueryQuery = {
         product_id: string;
         user_id: any;
         quantity: number;
-        product: {
+        product?: {
           __typename?: "products";
           id: string;
           slug: string;
           name: string;
           price: any;
           description?: string | null;
-          featuredImage: {
+          featuredImage?: {
             __typename?: "medias";
             id: string;
             key: string;
             alt: string;
-          };
-        };
+          } | null;
+        } | null;
       };
     }>;
   } | null;
@@ -2282,20 +2834,20 @@ export type CreateCartMutationMutation = {
       product_id: string;
       user_id: any;
       quantity: number;
-      product: {
+      product?: {
         __typename?: "products";
         id: string;
         slug: string;
         name: string;
         price: any;
         description?: string | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
-      };
+        } | null;
+      } | null;
     }>;
   } | null;
 };
@@ -2330,20 +2882,20 @@ export type UpdateCartsMutationMutation = {
       product_id: string;
       user_id: any;
       quantity: number;
-      product: {
+      product?: {
         __typename?: "products";
         id: string;
         slug: string;
         name: string;
         price: any;
         description?: string | null;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
-      };
+        } | null;
+      } | null;
     }>;
   };
 };
@@ -2373,12 +2925,12 @@ export type CollectionBannerFragmentFragment = {
   id: string;
   label: string;
   slug: string;
-  featuredImage: {
+  featuredImage?: {
     __typename?: "medias";
     id: string;
     key: string;
     alt: string;
-  };
+  } | null;
 };
 
 export type CollectionCardFragmentFragment = {
@@ -2386,7 +2938,7 @@ export type CollectionCardFragmentFragment = {
   id: string;
   label: string;
   slug: string;
-  featuredImage: { __typename?: "medias"; key: string; alt: string };
+  featuredImage?: { __typename?: "medias"; key: string; alt: string } | null;
 };
 
 export type CollectionColumnsFragmentFragment = {
@@ -2448,7 +3000,7 @@ export type ProductCommentsSectionFragmentFragment = {
   __typename?: "comments";
   id: string;
   comment: string;
-  profile: { __typename?: "profiles"; name?: string | null };
+  profile?: { __typename?: "profiles"; name?: string | null } | null;
 };
 
 export type ImageGridFragmentFragment = {
@@ -2505,12 +3057,12 @@ export type BuyAgainCardFragmentFragment = {
     name: string;
     slug: string;
     description?: string | null;
-    featuredImage: {
+    featuredImage?: {
       __typename?: "medias";
       id: string;
       key: string;
       alt: string;
-    };
+    } | null;
   };
 };
 
@@ -2529,7 +3081,7 @@ export type OrdersListFragmentFragment = {
         node: {
           __typename?: "order_lines";
           id: string;
-          products: {
+          products?: {
             __typename?: "products";
             id: string;
             featured?: boolean | null;
@@ -2537,13 +3089,13 @@ export type OrdersListFragmentFragment = {
             name: string;
             slug: string;
             description?: string | null;
-            featuredImage: {
+            featuredImage?: {
               __typename?: "medias";
               id: string;
               key: string;
               alt: string;
-            };
-          };
+            } | null;
+          } | null;
         };
       }>;
     } | null;
@@ -2573,12 +3125,12 @@ export type ProductCardFragmentFragment = {
   slug: string;
   badge?: string | null;
   price: any;
-  featuredImage: {
+  featuredImage?: {
     __typename?: "medias";
     id: string;
     key: string;
     alt: string;
-  };
+  } | null;
   collections?: {
     __typename?: "collections";
     id: string;
@@ -2590,19 +3142,24 @@ export type ProductCardFragmentFragment = {
 export type ProductImageShowcaseFragmentFragment = {
   __typename?: "products";
   id: string;
-  featuredImage: {
+  featuredImage?: {
     __typename?: "medias";
     id: string;
     key: string;
     alt: string;
-  };
+  } | null;
   images?: {
     __typename?: "product_mediasConnection";
     edges: Array<{
       __typename?: "product_mediasEdge";
       node: {
         __typename?: "product_medias";
-        media: { __typename?: "medias"; id: string; key: string; alt: string };
+        media?: {
+          __typename?: "medias";
+          id: string;
+          key: string;
+          alt: string;
+        } | null;
       };
     }>;
   } | null;
@@ -2613,7 +3170,7 @@ export type CarouselImagesFragmentFragment = {
   node: {
     __typename?: "product_medias";
     id: string;
-    media: { __typename?: "medias"; key: string; alt: string };
+    media?: { __typename?: "medias"; key: string; alt: string } | null;
   };
 };
 
@@ -2636,12 +3193,12 @@ export type RecomendationProductsQueryQuery = {
         slug: string;
         badge?: string | null;
         price: any;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
         collections?: {
           __typename?: "collections";
           id: string;
@@ -2676,12 +3233,12 @@ export type ProductColumnFragmentFragment = {
   badge?: string | null;
   price: any;
   featured?: boolean | null;
-  featuredImage: {
+  featuredImage?: {
     __typename?: "medias";
     id: string;
     key: string;
     alt: string;
-  };
+  } | null;
   collections?: {
     __typename?: "collections";
     id: string;
@@ -2715,12 +3272,12 @@ export type SearchQuery = {
         slug: string;
         badge?: string | null;
         price: any;
-        featuredImage: {
+        featuredImage?: {
           __typename?: "medias";
           id: string;
           key: string;
           alt: string;
-        };
+        } | null;
         collections?: {
           __typename?: "collections";
           id: string;
@@ -3936,6 +4493,403 @@ export const AdminProductsPageQueryDocument = {
   AdminProductsPageQueryQuery,
   AdminProductsPageQueryQueryVariables
 >;
+export const ProductDetailPageQueryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "ProductDetailPageQuery" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "productSlug" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productsCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "productSlug" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edges" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "node" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "description" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "rating" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "price" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "tags" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "totalComments" },
+                            },
+                            {
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "ProductImageShowcaseFragment",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "commentsCollection",
+                              },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "first" },
+                                  value: { kind: "IntValue", value: "5" },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "edges" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "node" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "FragmentSpread",
+                                                name: {
+                                                  kind: "Name",
+                                                  value:
+                                                    "ProductCommentsSectionFragment",
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "collections" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "id" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "label" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "slug" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "recommendations" },
+            name: { kind: "Name", value: "productsCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "first" },
+                value: { kind: "IntValue", value: "4" },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edges" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "node" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "ProductCardFragment",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageShowcaseFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "products" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "featuredImage" },
+            name: { kind: "Name", value: "medias" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "images" },
+            name: { kind: "Name", value: "product_mediasCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ListValue",
+                  values: [
+                    {
+                      kind: "ObjectValue",
+                      fields: [
+                        {
+                          kind: "ObjectField",
+                          name: { kind: "Name", value: "priority" },
+                          value: { kind: "EnumValue", value: "DescNullsLast" },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edges" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "node" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "media" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "id" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "key" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "alt" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCommentsSectionFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "comments" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "comment" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "profile" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "products" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "rating" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "badge" } },
+          { kind: "Field", name: { kind: "Name", value: "price" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "featuredImage" },
+            name: { kind: "Name", value: "medias" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "collections" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  ProductDetailPageQueryQuery,
+  ProductDetailPageQueryQueryVariables
+>;
 export const CollectionRouteQueryDocument = {
   kind: "Document",
   definitions: [
@@ -4922,403 +5876,6 @@ export const LandingRouteQueryDocument = {
 } as unknown as DocumentNode<
   LandingRouteQueryQuery,
   LandingRouteQueryQueryVariables
->;
-export const ProductDetailPageQueryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "ProductDetailPageQuery" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "productSlug" },
-          },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "productsCollection" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "filter" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "slug" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "productSlug" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "edges" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "node" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "description" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "rating" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "price" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "tags" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "totalComments" },
-                            },
-                            {
-                              kind: "FragmentSpread",
-                              name: {
-                                kind: "Name",
-                                value: "ProductImageShowcaseFragment",
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: {
-                                kind: "Name",
-                                value: "commentsCollection",
-                              },
-                              arguments: [
-                                {
-                                  kind: "Argument",
-                                  name: { kind: "Name", value: "first" },
-                                  value: { kind: "IntValue", value: "5" },
-                                },
-                              ],
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "edges" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: { kind: "Name", value: "node" },
-                                          selectionSet: {
-                                            kind: "SelectionSet",
-                                            selections: [
-                                              {
-                                                kind: "FragmentSpread",
-                                                name: {
-                                                  kind: "Name",
-                                                  value:
-                                                    "ProductCommentsSectionFragment",
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "collections" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "label" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "slug" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "recommendations" },
-            name: { kind: "Name", value: "productsCollection" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "first" },
-                value: { kind: "IntValue", value: "4" },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "edges" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "node" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "FragmentSpread",
-                              name: {
-                                kind: "Name",
-                                value: "ProductCardFragment",
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductImageShowcaseFragment" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "products" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "featuredImage" },
-            name: { kind: "Name", value: "medias" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "key" } },
-                { kind: "Field", name: { kind: "Name", value: "alt" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "images" },
-            name: { kind: "Name", value: "product_mediasCollection" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ListValue",
-                  values: [
-                    {
-                      kind: "ObjectValue",
-                      fields: [
-                        {
-                          kind: "ObjectField",
-                          name: { kind: "Name", value: "priority" },
-                          value: { kind: "EnumValue", value: "DescNullsLast" },
-                        },
-                      ],
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "edges" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "node" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "media" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "key" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "alt" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductCommentsSectionFragment" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "comments" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "comment" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "profile" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductCardFragment" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "products" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "rating" } },
-          { kind: "Field", name: { kind: "Name", value: "slug" } },
-          { kind: "Field", name: { kind: "Name", value: "badge" } },
-          { kind: "Field", name: { kind: "Name", value: "price" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "featuredImage" },
-            name: { kind: "Name", value: "medias" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "key" } },
-                { kind: "Field", name: { kind: "Name", value: "alt" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "collections" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                { kind: "Field", name: { kind: "Name", value: "slug" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  ProductDetailPageQueryQuery,
-  ProductDetailPageQueryQueryVariables
 >;
 export const FetchGuestCartQueryDocument = {
   kind: "Document",

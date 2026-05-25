@@ -32,8 +32,14 @@ const ProductSearch = gql(/* GraphQL */ `
       edges {
         node {
           id
-
-          ...ProductCardFragment
+          name
+          slug
+          rating
+          badge
+          brand
+          image
+          toatlComments
+          
         }
       }
       pageInfo {
@@ -74,7 +80,7 @@ const SearchResultPage = ({
             <p>
               {`There is no Products with name `}
               <span className="font-bold">
-                {(variables.search || []).slice(1, -2)}
+                {(variables.search || []).slice(1, -1)}
               </span>
               {"."}
             </p>
