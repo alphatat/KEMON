@@ -36,10 +36,10 @@ const ProductSearch = gql(/* GraphQL */ `
           slug
           rating
           badge
+          price
           brand
-          image
-          toatlComments
-          
+          images
+          totalComments
         }
       }
       pageInfo {

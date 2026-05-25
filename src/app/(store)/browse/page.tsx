@@ -22,7 +22,7 @@ async function ProductsPage({}: ProductsPageProps) {
   return (
     <Shell>
 
-{/*      <Suspense
+     {/* <Suspense
         fallback={
           <div>
             <Skeleton className="max-w-xl h-8 mb-3" />

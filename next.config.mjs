@@ -14,6 +14,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "source.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "images-static.nykaa.com",
+      },
+
+
     ],
   },
   experimental: {
@@ -22,3 +28,4 @@ const nextConfig = {
 }
 
 export default nextConfig
+  

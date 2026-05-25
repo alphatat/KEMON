@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { AddToCartButton } from "@/features/carts";
 import { AddToWishListButton } from "@/features/wishlists";
 import { Rating } from "@/components/ui/rating";
 import { BadgeType } from "@/lib/supabase/schema";
@@ -30,16 +29,12 @@ export const ProductCardFragment = gql(/* GraphQL */ `
   fragment ProductCardFragment on products {
     id
     name
-    description
     rating
     slug
     badge
     price
-    featuredImage: medias {
-      id
-      key
-      alt
-    }
+    brand
+    images
     collections {
       id
       label
@@ -53,8 +48,11 @@ export function ProductCard({
   product,
   ...props
 }: ProductCardProps) {
-  const { id, name, slug, featuredImage, badge, price } = product;
-
+  const { id, name, slug, badge, price, images, brand, rating } = product;
+  const parsedImages = typeof images === "string" ? JSON.parse(images) : images;
+  console.log(parsedImages)
+  const imageUrl = parsedImages.length > 0 ? parsedImages[0] : null;
+  console.log(imageUrl)
   return (
     <Card
       className={cn("w-full border-0 rounded-lg py-3 ", className)}
@@ -62,51 +60,62 @@ export function ProductCard({
     >
       <CardContent className="relative p-0 mb-5 overflow-hidden">
         <Link href={`/shop/${slug}`}>
-          <Image
-            src={keytoUrl(featuredImage.key)}
-            alt={featuredImage.alt}
-            width={400}
-            height={400}
-            className="aspect-[1/1] object-cover object-center hover:scale-[1.02] hover:opacity-70 transition-all duration-500"
-          />
+        {imageUrl? (
+            <Image
+              src={imageUrl}
+              alt={name}
+              width={400}
+              height={400}
+              className="aspect-[1/1] object-cover object-center hover:scale-[1.02] hover:opacity-70 transition-all duration-500"
+            />
+          ) : (
+            <div className="aspect-[1/1] w-full bg-muted flex items-center justify-center text-muted-foreground text-sm">
+              No image
+            </div>
+          )}
         </Link>
+
         {badge && (
           <Badge className="absolute top-0 left-0" variant={badge as BadgeType}>
-            {badge}
+            {badge.replace("_", " ")}
           </Badge>
         )}
       </CardContent>
 
       <CardHeader className="p-0 mb-3 md:mb-5">
         <CardTitle>
-          <Link href={`/shop/${slug}`} className="hover:underline">
+          <Link href={`/products/${slug}`} className="hover:underline">
             {name}
           </Link>
         </CardTitle>
+        {brand && (
+          <p className="text-xm text-muted-foreground">{brand}</p>
+        )}
 
-        <div className="hidden md:block">
+        <div className="">৳{price}</div>
+
+{/*        <div className="hidden md:block">
           <CardDescription className="max-w-[240px] line-clamp-2">
             {product.description}
           </CardDescription>
         </div>
-
-        <div className="">${price}</div>
+*/}
 
         <div className="hidden md:block">
-          <Rating value={product.rating} precision={0.5} readOnly />
+          <Rating value={Number(rating || 0)} precision={0.5} readOnly />
         </div>
       </CardHeader>
 
       <CardFooter className="gap-x-2 md:gap-x-5 p-0 ">
-        <Suspense
+{/*        <Suspense
           fallback={
             <Button className="rounded-full p-0 h-8 w-8" disabled>
               <Icons.basket className="h-5 w-5 md:h-4 md:w-4" />
             </Button>
           }
         >
-          <AddToCartButton productId={id} />
-        </Suspense>
+          <AddToWishListButton productId={id} />
+        </Suspense>*/}
 
         <Suspense
           fallback={
@@ -115,7 +124,7 @@ export function ProductCard({
             </Button>
           }
         >
-          <AddToWishListButton productId={product.id} />
+          <AddToWishListButton productId={id} />
         </Suspense>
       </CardFooter>
     </Card>
