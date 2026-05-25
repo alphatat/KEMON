@@ -21,9 +21,8 @@ async function ProductsPage({}: ProductsPageProps) {
 
   return (
     <Shell>
-      <Header heading="Shop Now" />
 
-      {/* <Suspense
+{/*      <Suspense
         fallback={
           <div>
             <Skeleton className="max-w-xl h-8 mb-3" />
