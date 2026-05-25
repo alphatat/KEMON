@@ -100,36 +100,7 @@ const SearchResultPage = ({
 
 
       {products && (
-        <section 
-          className="grid grid-cols-2 lg:grid-cols-4 w-3/4 gap-y-8 gap-x-3 py-5"
-          style={{ overflowAnchor: "auto"}}
-        >
-
-          {products.edges.map(({ node }) => (
-            <ProductCard key={node.id} product={node} />
-          ))}
-        </section>
-      )}
-
-{/*      {fetching && (
-        <div className="w-full py-5 flex justify-center">
-          <p className="text-sm text-muted-foreground">\.../</p>
-        </div>
-      )}*/}
-
-
-      {isLastPage && products.pageInfo.hasNextPage && (
-        <div 
-          className="w-full h-10"
-          ref={sentinelRef}
-        >
-          {/*<Button onClick={() => onLoadMore(products.pageInfo.endCursor)}>
-            load more
-          </Button>*/}
-        </div>
-      )}
-
-{/*            <>
+        <>
           {products.edges.length === 0 && (
             <p>
               {`There is no Products with name `}
@@ -139,7 +110,36 @@ const SearchResultPage = ({
               {"."}
             </p>
           )}
-*/}
+
+          <section 
+            className="grid grid-cols-2 lg:grid-cols-4 w-3/4 gap-y-8 gap-x-3 py-5"
+            style={{ overflowAnchor: "auto"}}
+          >
+
+            {products.edges.map(({ node }) => (
+              <ProductCard key={node.id} product={node} />
+            ))}
+          </section>
+        </>
+      )}
+
+    {fetching && (
+      <div className="w-full h-24 flex items-center text-sm justify-center text-muted-foreground animate-pulse">
+        \.../
+      </div>
+    )}
+
+
+      {isLastPage && products?.pageInfo?.hasNextPage && (
+        <div
+          className="w-full h-10"
+          ref={sentinelRef}
+        >
+          {/*<Button onClick={() => onLoadMore(products.pageInfo.endCursor)}>
+            load more
+          </Button>*/}
+        </div>
+      )}
 
     </div>
   );

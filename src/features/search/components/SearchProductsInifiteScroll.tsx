@@ -1,7 +1,8 @@
 "use client";
+
 import { OrderByDirection, SearchQueryVariables } from "@/gql/graphql";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useMemo } from "react";
 import SearchResultPage from "./SearchResultPage";
 
 interface SearchProductsInifiteScrollProps {
@@ -11,31 +12,46 @@ interface SearchProductsInifiteScrollProps {
 function SearchProductsInifiteScroll({
   collectionId,
 }: SearchProductsInifiteScrollProps) {
+
   const searchParmas = useSearchParams();
-  const varaibles = searchParamsVariablesFactory(searchParmas, collectionId);
 
-  const [pageVariables, setPageVariables] = useState([varaibles]);
+  const varaibles = useMemo(
+    () => searchParamsVariablesFactory(searchParmas, collectionId),
+    [searchParmas, collectionId]
+  );
 
-  useEffect(() => {
-    setPageVariables([
-      searchParamsVariablesFactory(searchParmas, collectionId),
-    ]);
-  }, [searchParmas]);
+  // const [pageVariables, setPageVariables] = useState([varaibles]);
 
-  const loadMoreHandler = (after: string) => {
-    setPageVariables([...pageVariables, { ...varaibles, after, first: 4 }]);
-  };
+  // useEffect(() => {
+  //   setPageVariables([
+  //     searchParamsVariablesFactory(searchParmas, collectionId),
+  //   ]);
+  // }, [searchParmas]);
 
+  // const loadMoreHandler = (after: string) => {
+  //   setPageVariables([...pageVariables, { ...varaibles, after, first: 4 }]);
+  // };
+
+  // const loadMoreHandler = (after: string) => {
+  //   setPageVariables((prev) => {
+  //     if (prev.some((v) => v.after === after)) return prev;
+  //     return [...prev, { ...varaibles, after, first: 28 }];
+  //   });
+  // };
+
+//overflow-anchor:none
   return (
-    <section style={{ overflowAnchor: "none"}}>
-      {pageVariables.map((variable, i) => (
+    <section style={{ overflowAnchor: "none" }}>
+{/*      {pageVariables.map((variable, i) => (
         <SearchResultPage
-          key={"" + variable.after}
+        //  key={"" + variable.after}
+          key={`seach-page${i}`}
           variables={variable}
           isLastPage={i === pageVariables.length - 1}
           onLoadMore={loadMoreHandler}
         />
-      ))}
+      ))}*/}
+      <SearchResultPage variables={varaibles} />
     </section>
   );
 }
@@ -48,12 +64,17 @@ const searchParamsVariablesFactory = (
 ) => {
   const priceRange = searchParams.get("price_range");
   const range = priceRange ? priceRange.split("-") : undefined;
+
+  const collectionParam = searchParams.get("collections")
   const collections =
-    (JSON.parse(searchParams.get("collections")) as string[]) ?? [];
+  collectionParam && collectionParam !== "undefined"
+    ? (JSON.parse(searchParams.get("collections")) as string[])
+    : [];
+
   const sort = searchParams.get("sort") ?? undefined;
   const search = searchParams.get("search") ?? undefined;
 
-  let orderBy = undefined;
+  let orderBy: SearchQueryVariables["orderBy"] = undefined;
 
   switch (sort) {
     case "BEST_MATCH":
@@ -79,7 +100,7 @@ const searchParamsVariablesFactory = (
       orderBy = undefined;
   }
 
-  console.log("collections", collections);
+//  console.log("collections", collections);
 
   const varaibles: SearchQueryVariables = {
     search: search ? `%${search.trim()}%` : "%%",
